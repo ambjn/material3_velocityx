@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 Color greenTouch = Vx.hexToColor("#788154");
@@ -10,15 +11,82 @@ class M2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Vx.hexToColor('#e8eddb'),
-      body: const Column(
-        children: [
-          // CalenderView
-          // MusicPlayerView
-          // ChatView
-        ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            // CalenderView
+            const CalenderView().p24().h(context.percentHeight * 30),
+            // MusicPlayerView
+
+            // ChatView
+          ],
+        ),
       ),
       // Bottom Bar
       bottomNavigationBar: const BottomBar(),
+    );
+  }
+}
+
+class CalenderView extends StatelessWidget {
+  const CalenderView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return RoundedBox(
+      child: Row(children: [
+        VStack(
+          [
+            const Text("MAY").text.xl4.thin.tighter.make(),
+            const Text("28")
+                .text
+                .xl6
+                .size(19)
+                .tightest
+                .bold
+                .color(Vx.hexToColor('#595236'))
+                .fontFamily(GoogleFonts.poppins().fontFamily!)
+                .make()
+          ],
+          crossAlignment: CrossAxisAlignment.center,
+        ),
+        const Spacer(),
+        VStack([
+          VxCapsule(
+            height: 30,
+            width: context.percentWidth * 50,
+            backgroundColor: greenTouch,
+            child: const Text("Hey Amber")
+                .text
+                .white
+                .make()
+                .px12()
+                .objectCenterLeft(),
+          ),
+          const Spacer(),
+          VStack(
+            [
+              Text("Stand Up").text.semiBold.make(),
+              Text("10:00 - 10:30").text.make()
+            ],
+            axisSize: MainAxisSize.max,
+          )
+              .box
+              .border(color: greenTouch, width: 3)
+              .p16
+              .rounded
+              .width(context.percentWidth * 50)
+              .make(),
+          const Spacer(),
+          VxCapsule(
+            width: context.percentWidth * 50,
+            height: 30,
+            backgroundColor: Vx.yellow200,
+            child:
+                const Text("Happy Hour").text.make().px12().objectCenterLeft(),
+          ),
+        ]),
+      ]),
     );
   }
 }
