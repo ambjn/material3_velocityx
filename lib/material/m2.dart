@@ -17,13 +17,96 @@ class M2 extends StatelessWidget {
             // CalenderView
             const CalenderView().p24().h(context.percentHeight * 30),
             // MusicPlayerView
-
+            const MusicPlayerView().px24()
             // ChatView
           ],
         ),
       ),
       // Bottom Bar
       bottomNavigationBar: const BottomBar(),
+    );
+  }
+}
+
+class MusicPlayerView extends StatelessWidget {
+  const MusicPlayerView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return RoundedBox(
+      child: Column(
+        children: [
+          VxCapsule(
+                  backgroundColor: Vx.hexToColor('#c4ecd4'),
+                  width: 120,
+                  height: 28,
+                  child: [
+                    const Icon(Icons.phone_android).scale50(),
+                    const Text("Phone Speaker").text.xs.make()
+                  ].hStack())
+              .objectCenterRight(),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              VxBox()
+                  .square(90)
+                  .bgImage(const DecorationImage(
+                      image: NetworkImage('https://picsum.photos/500'),
+                      fit: BoxFit.cover))
+                  .rounded
+                  .make(),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("song name right here").text.semiBold.make(),
+                  const Text("artist name right here").text.sm.make()
+                ],
+              ).pSymmetric(h: 16, v: 12)
+            ],
+          ),
+          Slider(
+              value: 35,
+              inactiveColor: Vx.black,
+              activeColor: Vx.black,
+              min: 0,
+              max: 100,
+              onChanged: (value) {}),
+          HStack([
+            const Text("1:20").text.make(),
+            const Spacer(),
+            const Text("3:20").text.make()
+          ]).px24(),
+          const HStack(
+            [
+              Icon(
+                Icons.shuffle,
+                size: 24,
+              ),
+              Spacer(),
+              Icon(
+                Icons.skip_previous,
+                size: 24,
+              ),
+              Spacer(),
+              Icon(
+                Icons.play_arrow,
+                size: 24,
+              ),
+              Spacer(),
+              Icon(
+                Icons.skip_next,
+                size: 24,
+              ),
+              Spacer(),
+              Icon(
+                Icons.repeat,
+                size: 24,
+              ),
+            ],
+            alignment: MainAxisAlignment.spaceAround,
+          ).p16()
+        ],
+      ),
     );
   }
 }
@@ -66,8 +149,8 @@ class CalenderView extends StatelessWidget {
           const Spacer(),
           VStack(
             [
-              Text("Stand Up").text.semiBold.make(),
-              Text("10:00 - 10:30").text.make()
+              const Text("Stand Up").text.semiBold.make(),
+              const Text("10:00 - 10:30").text.make()
             ],
             axisSize: MainAxisSize.max,
           )
